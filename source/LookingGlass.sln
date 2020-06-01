@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LookingGlass", "LookingGlass\LookingGlass.vcxproj", "{18774928-5F3C-4CE4-9FE8-36926EF567C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coriander", "Coriander\Coriander.csproj", "{F835CE57-0879-4569-B8CC-5444EB5D5AE3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCppCoreHost", "TestCppCoreHost\TestCppCoreHost.vcxproj", "{7B50223C-C1BC-429A-BC14-92336C284372}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18774928-5F3C-4CE4-9FE8-36926EF567C1}.Debug|x86.ActiveCfg = Debug|Win32
+		{18774928-5F3C-4CE4-9FE8-36926EF567C1}.Debug|x86.Build.0 = Debug|Win32
+		{18774928-5F3C-4CE4-9FE8-36926EF567C1}.Release|x86.ActiveCfg = Release|Win32
+		{18774928-5F3C-4CE4-9FE8-36926EF567C1}.Release|x86.Build.0 = Release|Win32
+		{F835CE57-0879-4569-B8CC-5444EB5D5AE3}.Debug|x86.ActiveCfg = Debug|x86
+		{F835CE57-0879-4569-B8CC-5444EB5D5AE3}.Debug|x86.Build.0 = Debug|x86
+		{F835CE57-0879-4569-B8CC-5444EB5D5AE3}.Release|x86.ActiveCfg = Release|x86
+		{F835CE57-0879-4569-B8CC-5444EB5D5AE3}.Release|x86.Build.0 = Release|x86
+		{7B50223C-C1BC-429A-BC14-92336C284372}.Debug|x86.ActiveCfg = Debug|Win32
+		{7B50223C-C1BC-429A-BC14-92336C284372}.Debug|x86.Build.0 = Debug|Win32
+		{7B50223C-C1BC-429A-BC14-92336C284372}.Release|x86.ActiveCfg = Release|Win32
+		{7B50223C-C1BC-429A-BC14-92336C284372}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B7D225D-23AB-40FB-8513-CEB1E9F31091}
+	EndGlobalSection
+EndGlobal
