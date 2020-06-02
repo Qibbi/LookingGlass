@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "framework.h"
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 #include "loadnet.h"
 #include "coreclrhost.h"
 #include <string>
