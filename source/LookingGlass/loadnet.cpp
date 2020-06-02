@@ -24,7 +24,10 @@ HMODULE LoadCoreCLR(LPCSTR directoryPath)
 	if (!result)
 	{
 		DWORD errorCode = GetLastError();
-		printf("CoreCLR not loaded from %s. Error code: %d\n", coreDllPath.c_str(), errorCode);
+		if (errorCode != 126)
+		{
+			printf("CoreCLR not loaded from %s. Error code: %d\n", coreDllPath.c_str(), errorCode);
+		}
 	}
 	return result;
 }
@@ -48,13 +51,10 @@ void BuildTPAList(LPCSTR directory, LPCSTR extension, std::string& tpaList)
 	{
 		do
 		{
-			if (strcmp(findData.cFileName, "LookingGlass.dll") != 0)
-			{
-				tpaList.append(directory);
-				tpaList.append(FS_SEPARATOR);
-				tpaList.append(findData.cFileName);
-				tpaList.append(PATH_DELIMITER);
-			}
+			tpaList.append(directory);
+			tpaList.append(FS_SEPARATOR);
+			tpaList.append(findData.cFileName);
+			tpaList.append(PATH_DELIMITER);
 		} while (FindNextFileA(fileHandle, &findData));
 		FindClose(fileHandle);
 	}
@@ -73,6 +73,7 @@ extern "C" __declspec(dllexport) int LoadCoreCLR()
 	{
 		currentDirectory[idz - 1] = '\0';
 	}
+	// SetCurrentDirectoryA(currentDirectory);
 
 	char coreRoot[MAX_PATH];
 	size_t outSize;
@@ -95,10 +96,13 @@ extern "C" __declspec(dllexport) int LoadCoreCLR()
 	coreclr_create_delegate_ptr createManagedDelegate = (coreclr_create_delegate_ptr)GetProcAddress(g_coreCLRModule, "coreclr_create_delegate");
 
 	std::string tpaList;
-	BuildTPAList(currentDirectory, ".dll", tpaList);
+	BuildTPAList(coreRoot, ".dll", tpaList);
 
-	const char* propertyKeys[] = { "TRUSTED_PLATFORM_ASSEMBLIES" };
-	const char* propertyValues[] = { tpaList.c_str() };
+	std::string appPath(currentDirectory);
+	appPath.append(FS_SEPARATOR);
+
+	const char* propertyKeys[] = { "TRUSTED_PLATFORM_ASSEMBLIES", "APP_PATHS" };
+	const char* propertyValues[] = { tpaList.c_str(), appPath.c_str() };
 
 	HRESULT hr = initializeCoreClr(
 		currentDirectory,
@@ -115,13 +119,13 @@ extern "C" __declspec(dllexport) int LoadCoreCLR()
 	}
 
 	managed_direct_method_ptr managedDelegate;
-	hr = createManagedDelegate(g_runtimeHost, g_domainId, "Coriander", "Coriander.CnC3EntryPoint", "Run", (void**)&managedDelegate);
+	hr = createManagedDelegate(g_runtimeHost, g_domainId, "Coriander", "CnC3EntryPoint", "Run", (void**)&managedDelegate);
 	if (FAILED(hr))
 	{
 		wprintf(L"CoreCLR create delegate failed. Error code: 0x%08x\n", hr);
 		return -3;
 	}
-
+	managedDelegate();
 	return 0;
 }
 

@@ -60,9 +60,12 @@
       </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
+      <NativeBinDir>$(BinRoot)/$(Configuration)</NativeBinDir>
+      <CoreSdk>Microsoft.NETCore.App.Host.win-x86</CoreSdk>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <NetHostDir>$(NetCoreTargetingPackRoot)/Microsoft.NETCore.App.Host.$(CoreSdk)/$(BundledNETCoreAppPackageVersion)/runtimes/$(CoreSdk)/native</NetHostDir>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -86,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="coreclrhost.h" />
     <ClInclude Include="loadnet.h" />
   </ItemGroup>
   <ItemGroup>

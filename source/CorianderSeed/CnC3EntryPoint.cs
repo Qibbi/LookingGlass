@@ -21,7 +21,7 @@ public static class CnC3EntryPoint
         Tracer.SetTraceLevel(6);
 #endif
         #endregion
-        Console.WriteLine(".Net Core active. wubwub");
+        Console.WriteLine(".Net Core active.");
         Console.ReadLine();
     }
 
